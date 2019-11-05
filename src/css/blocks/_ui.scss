@@ -1,0 +1,24 @@
+.ui {
+  padding: 4em 0 0 0;
+  text-align:center;
+  position: relative;
+  .primary {
+    position: relative;
+    margin: 0 0 2em;
+    button {
+      margin: 0 0 1em 0;
+    }
+  }
+  .credits {
+    a {
+      color: rgba(128, 128, 128, 0.5);
+      font-size: 0.7em;
+      text-decoration: underline;
+      margin-right: 1em;
+      &:hover {
+        color: blue;
+      }
+    }
+    padding: 0;
+  }
+}

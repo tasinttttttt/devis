@@ -1,0 +1,30 @@
+[*.{css,scss,less,js,jsx,json,ts,sass,html,hbs,mustache,phtml,html.twig,md,yml,yaml}]
+charset = utf-8
+indent_style = space
+indent_size = 2
+tab_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+indent_size = 4
+indent_style = space
+trim_trailing_whitespace = false
+
+[site/templates/**.php]
+indent_size = 4
+indent_style = space
+
+[site/snippets/**.php]
+indent_size = 4
+indent_style = space
+
+[.{babelrc,editorconfig,eslintrc,lintstagedrc,stylelintrc}]
+indent_size = 2
+indent_style = space
+
+[package.json]
+indent_size = 2
+indent_style = space

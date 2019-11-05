@@ -1,0 +1,28 @@
+.sides {
+  .issuer, .link, .client {
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+    .field-form {
+      width: 50%;
+    }
+  }
+
+  .issuer {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .link {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .client {
+    text-align: right;
+    justify-content: flex-end;
+    textarea {
+      text-align: right;
+    }
+  }
+}

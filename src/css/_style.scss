@@ -1,0 +1,108 @@
+// .num {
+//   position: absolute;
+//   right: 4rem;
+// }
+
+// .notes {
+//   margin-bottom: 2rem;
+//   margin-top: 0.7rem;
+//   font-size: 0.75rem;
+// }
+
+// .mention {
+//   width: 50%;
+//   margin-top: 2rem;
+// }
+
+// .signatures {
+//   margin-top: 2rem;
+
+//   li {
+//     width: 49.5%;
+//     display: inline-block;
+//     font-size: 0.75rem;
+//   }
+// }
+
+// .description {
+//   margin-top: 2rem;
+//   font-size: 1.5rem;
+//   line-height: 1.9rem;
+// }
+
+// .montant {
+//   margin-top: 3rem;
+//   font-size: 1.5rem;
+// }
+
+// .IBAN {
+//   margin-top: 3rem;
+// }
+
+// li.cut {
+//   display: inline-block;
+//   padding-top: 1rem;
+//   margin-top: 1rem;
+//   border-top: solid 1px;
+// }
+
+// b:after {
+//   content: ":";
+// }
+
+// table {
+//   width: 100%;
+//   margin-top: 4rem;
+// }
+
+// th, td {
+//   padding: 0.4rem;
+// }
+
+// th {
+//   text-align: left;
+//   font-weight: bold;
+//   border-bottom: solid 1px;
+// }
+
+// tr {
+//   td {
+//     &:not(:first-of-type) {
+//       border-bottom: solid 1px;
+//     }
+
+//     &.title {
+//       border-top: solid 1px;
+//     }
+//   }
+
+//   &.total {
+//     td {
+//       font-weight: bold;
+//     }
+
+//     &.ttc {
+//       border-top: solid 3px;
+//     }
+
+//     td:first-of-type {
+//       border-bottom: solid 1px;
+//     }
+//   }
+// }
+
+// #totalHT::after {
+//   content: "*";
+// }
+
+// sup {
+//   transform: scale(50%);
+//   line-height: 0;
+//   vertical-align: super;
+//   font-size: 0.8rem;
+//   margin-left: 0.2rem;
+// }
+
+// .def {
+//   font-weight: bold;
+// }

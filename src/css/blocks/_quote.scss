@@ -1,0 +1,107 @@
+.quote {
+  margin-top: 4em;
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  .table-header{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  .table-content, .table-footer{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .table-row{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  .table-head {
+    vertical-align: bottom;
+    text-align: left;
+    font-weight: bold;
+    border: none;
+  }
+  .table-head{
+    padding: 1em;
+  }
+  .table-cell{
+    padding: 1em 1em 0.5em 1em;
+  }
+  .table-cell {
+    border-top: none;
+    &.title {
+      border-top: 1px solid #000;
+    }
+    &.fee, &.days, &.detail {
+      border-top: 1px solid #000;
+    }
+    &.empty {
+      border: none;
+    }
+  }
+  .quote-item .table-cell:first-child {
+    &.title {
+      flex: 30%;
+    }
+  }
+  .details {
+    flex: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    padding: 0;
+    position: relative;
+  }
+  .title {
+    flex: 30%;
+  }
+  .detail {
+    flex: 60%
+  }
+  .fee, .days {
+    flex: 20%;
+  }
+  .fee, .days{
+    text-align: right;
+    input, textarea {
+      text-align: right;
+    }
+  }
+  .quote-total {
+    font-weight: bold;
+    .table-cell {
+      &.details > .table-cell {
+        border-top: none;
+      }
+      border-top: 2px solid #000;
+    }
+  }
+  .quote-item {
+    position: relative;
+  }
+  .quotedetail-actions, .quoteitem-actions, .quote-actions{
+    position: relative;
+    padding: 0.5em 0 0.5em 1em;
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+
+  .quoteitem-actions {
+    text-align: right;
+    button:not(:hover){
+      background: white;
+    }
+  }
+  .quote-actions {
+    text-align: center;
+    padding: 1em;
+  }
+}
