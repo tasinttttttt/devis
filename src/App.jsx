@@ -25,10 +25,11 @@ function App() {
     date: '',
     title: '',
     subtitle: '',
+    note: '',
     settings: {
       feeperamount: 0,
-      currency: 'Euros',
-      amountLabel: 'Jours',
+      currency: '€',
+      amountLabel: 'Jour',
       tax: {
         amount: 0,
         label: '',
@@ -168,8 +169,19 @@ function App() {
       </div>
 
       <div className="notes">
-        <div className="feeperday">
-          * Basé sur le tarif: <span className="bold">{state.settings.feeperamount}{state.settings.currency} / {state.settings.amountLabel}.</span>
+        <div className="feeperamount">
+          * Tarif: <span className="bold">{state.settings.feeperamount}{state.settings.currency} / {state.settings.amountLabel}.</span>
+        </div>
+        <div className="note">
+          <Input
+            type='textarea'
+            placeholder="Note"
+            savedvalue={state.note}
+            required={false}
+            updateField={value => {
+              updateState('note', value)
+            }}
+          />
         </div>
       </div>
 
