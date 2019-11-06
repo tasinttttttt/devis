@@ -31,8 +31,8 @@ function App() {
       currency: '€',
       amountLabel: 'Jour',
       tax: {
-        amount: 0,
-        label: '',
+        amount: 20,
+        label: 'TVA',
         enabled: false
       }
     },
@@ -141,7 +141,7 @@ function App() {
         <div className="title">
           <Input
             type='input'
-            placeholder="Type (ex. Devis, Facture)"
+            placeholder="Type (ex. Devis numéro, Facture numéro)"
             savedvalue={state.title}
             required={true}
             updateField={value => {
@@ -152,7 +152,7 @@ function App() {
         <div className="subtitle">
           <Input
             type='input'
-            placeholder="Titre de la prestation"
+            placeholder="Objet"
             savedvalue={state.subtitle}
             required={true}
             updateField={value => {
@@ -175,7 +175,8 @@ function App() {
         <div className="note">
           <Input
             type='textarea'
-            placeholder="Note"
+            rows={6}
+            placeholder="Notes"
             savedvalue={state.note}
             required={false}
             updateField={value => {
@@ -201,7 +202,7 @@ function App() {
                 <Button className="print-btn" variant="success" onClick={printHandler}><MdPrint /> Imprimer le document</Button>
               </Col>
               <Col sm={4}>
-                <Button className="print-btn" variant="danger" onClick={deleteHandler}><MdWarning /> Supprimer le document</Button>
+                <Button className="print-btn" variant="danger" onClick={deleteHandler}><MdWarning /> Effacer le document</Button>
               </Col>
             </Row>
           </Container>

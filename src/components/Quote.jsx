@@ -31,7 +31,7 @@ const Quote = (props) => {
     <React.Fragment>
       <div className="table">
         <div className="table-header">
-          <div className="table-head title">Tâche</div>
+          <div className="table-head title">Libellé</div>
           <div className="table-head details">
             <div className="table-head detail">Détails</div>
             <div className="table-head days">{settings.amountLabel}(s)</div>
@@ -55,7 +55,7 @@ const Quote = (props) => {
           }
           <div className="quote-actions">
             <Button variant="outline-primary" onClick={addQuoteDetail}>
-              <MdNoteAdd /> Ajouter une tâche
+              <MdNoteAdd /> Ajouter une prestation
             </Button>
           </div>
         </div>

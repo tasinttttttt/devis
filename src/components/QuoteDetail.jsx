@@ -33,7 +33,7 @@ const QuoteDetail = (props) => {
           {
             props.hasTitle &&
             <Input
-              placeholder="Tâche"
+              placeholder="Intitulé"
               savedvalue={props.data.title}
               required={true}
               updateField={value => {
@@ -46,7 +46,7 @@ const QuoteDetail = (props) => {
           <div className="table-cell detail">
             <Input
               type='textarea'
-              placeholder="Détail"
+              placeholder="Description"
               required={true}
               savedvalue={props.data.detail}
               updateField={value => {
