@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import * as ls from 'local-storage'
+import { useTranslation } from 'react-i18next'
 
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -19,6 +20,8 @@ import Settings from './components/Settings.jsx'
 import useAppState from './state/useAppState.js'
 
 function App() {
+  const { t } = useTranslation()
+
   const defaultState = {
     issuer: '',
     client: '',
@@ -27,11 +30,11 @@ function App() {
     subtitle: '',
     note: '',
     settings: {
-      feeperamount: 0,
+      language: 'en',
       currency: '€',
-      amountLabel: 'Jour',
+      amountLabel: 'day',
       tax: {
-        amount: 20,
+        amount: '',
         label: 'TVA',
         enabled: false
       }
@@ -42,8 +45,8 @@ function App() {
           {
             title: '',
             detail: '',
-            days: 0,
-            fee: 0,
+            days: '',
+            fee: '',
           }
         ]
       ],
@@ -102,7 +105,7 @@ function App() {
         <div className="person issuer">
           <Input
             type='textarea'
-            placeholder="Émetteur"
+            placeholder={t('placeholder.issuer')}
             savedvalue={state.issuer}
             required={true}
             rows={6}
@@ -111,11 +114,11 @@ function App() {
             }}
           />
         </div>
-        <div className="link">à</div>
+        <div className="link">{t('placeholder.to')}</div>
         <div className="person client">
           <Input
             type='textarea'
-            placeholder="Client"
+            placeholder={t('placeholder.client')}
             savedvalue={state.client}
             required={true}
             rows={6}
@@ -130,7 +133,7 @@ function App() {
         <div className="date">
           <Input
             type='input'
-            placeholder="Lieu, date"
+            placeholder={t('placeholder.location')}
             savedvalue={state.date}
             required={true}
             updateField={value => {
@@ -141,7 +144,7 @@ function App() {
         <div className="title">
           <Input
             type='input'
-            placeholder="Type (ex. Devis numéro, Facture numéro)"
+            placeholder={t('placeholder.documenttype')}
             savedvalue={state.title}
             required={true}
             updateField={value => {
@@ -152,7 +155,7 @@ function App() {
         <div className="subtitle">
           <Input
             type='input'
-            placeholder="Objet"
+            placeholder={t('placeholder.task')}
             savedvalue={state.subtitle}
             required={true}
             updateField={value => {
@@ -169,14 +172,11 @@ function App() {
       </div>
 
       <div className="notes">
-        <div className="feeperamount">
-          * Tarif: <span className="bold">{state.settings.feeperamount}{state.settings.currency} / {state.settings.amountLabel}.</span>
-        </div>
         <div className="note">
           <Input
             type='textarea'
             rows={6}
-            placeholder="Notes"
+            placeholder={t('footnote')}
             savedvalue={state.note}
             required={false}
             updateField={value => {
@@ -195,20 +195,20 @@ function App() {
                   data={state.settings}
                   onSave={settingsHandler}
                 >
-                  <MdSettings /> Paramètres
+                  <MdSettings /> {t('settings')}
                 </Settings>
               </Col>
               <Col sm={4}>
-                <Button className="print-btn" variant="success" onClick={printHandler}><MdPrint /> Imprimer le document</Button>
+                <Button className="print-btn" variant="success" onClick={printHandler}><MdPrint /> {t('printdocument')}</Button>
               </Col>
               <Col sm={4}>
-                <Button className="print-btn" variant="danger" onClick={deleteHandler}><MdWarning /> Effacer le document</Button>
+                <Button className="print-btn" variant="danger" onClick={deleteHandler}><MdWarning /> {t('erasedocument')}</Button>
               </Col>
             </Row>
           </Container>
         </div>
         <div className="credits">
-          <a href="https://github.com/tasinttttttt/devis"><DiGithubBadge /> Code source</a>
+          <a href="https://github.com/tasinttttttt/devis"><DiGithubBadge /> {t('source')}</a>
           <a href="https://tayebbayri.com"><MdLink /> tbayri</a>
         </div>
       </aside>

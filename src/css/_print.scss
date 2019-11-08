@@ -1,16 +1,16 @@
 @media print {
   @page {
-    margin: 2em !important;
+    margin: 2em;
   }
   input, textarea, select, button, .badge, .ui{
     display: none !important;
   }
-  html {
-    font-size: 9.5pt !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  body:after{
-    display: none;
+  body {
+    margin: 2rem 3rem 6rem 3rem;
+    font-size: 12pt;
+    min-width: 960px;
+    &:after{
+      display: none;
+    }
   }
 }

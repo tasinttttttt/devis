@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import { MdAdd } from "react-icons/md"
 import Button from 'react-bootstrap/Button'
@@ -7,14 +8,14 @@ import Button from 'react-bootstrap/Button'
 import QuoteDetail from './QuoteDetail.jsx'
 
 const QuoteItem = (props) => {
-  const details = props.data
+  const { t } = useTranslation()
 
   const addDetail = () => (
-    props.updateItem([...details, {}])
+    props.updateItem([...props.data, {}])
   )
 
   const deleteDetail = (detailIndex) => {
-    const newDetails = details.filter((item, index) => index !== detailIndex)
+    const newDetails = props.data.filter((item, index) => index !== detailIndex)
     if (!newDetails.length) {
       props.deleteItem()
     } else {
@@ -23,7 +24,7 @@ const QuoteItem = (props) => {
   }
 
   const updateItem = (index, value) => {
-    const newDetails = [...details]
+    const newDetails = [...props.data]
     newDetails[index] = value
     props.updateItem(newDetails)
   }
@@ -31,7 +32,7 @@ const QuoteItem = (props) => {
   return (
     <React.Fragment>
       {
-        details.map((item, index) => (
+        props.data.map((item, index) => (
           <React.Fragment key={index}>
             <QuoteDetail
               data={item}
@@ -51,7 +52,7 @@ const QuoteItem = (props) => {
         props.data.length
         ? <div className="quoteitem-actions">
             <Button variant="outline-primary" size="sm" onClick={addDetail}>
-              <MdAdd /> Ajouter un détail
+              <MdAdd /> {t('adddetail')}
             </Button>
           </div>
         : ''

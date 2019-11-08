@@ -2,7 +2,9 @@ label {
   display: inline-block;
   margin-bottom: .5rem;
 }
-
+.form-control {
+  padding: .375em 0.5em;
+}
 .field-form--read{
   margin: 0;
   white-space: pre-wrap;

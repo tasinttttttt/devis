@@ -20,13 +20,13 @@ const Input = (props) => {
   return (
     <Form.Group className={editing ? 'field-form' : 'field-form field-form--read'}>
       {
-        (editing === true || !props.savedvalue)
+        (editing === true || props.savedvalue === '')
           ? props.type === 'textarea'
             ? <Form.Control {...newProps} value={value} onChange={onChange} as={props.type} />
             : <Form.Control {...newProps} value={value} onChange={onChange} />
           : <div
               className="field-form__content"
-              style={{minHeight: '20px', minWidth: '100px'}}
+              style={{minHeight: '20px'}}
               onClick={() => {
                 setEditing(true)
                 updateValue(props.savedvalue)
@@ -42,9 +42,9 @@ const Input = (props) => {
 Input.defaultProps = {
   className: 'field-form__form',
   type: 'input',
-  placeholder: 'Nouvelle ligne',
+  placeholder: '',
   savedvalue: '',
-  autoFocus: true,
+  autoFocus: false,
   required: false,
   onBlur: e => {
     console.log({onBlur: e})

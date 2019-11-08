@@ -14,8 +14,10 @@ const computeQuote = (items, settings) => {
   const flattened = [].concat.apply([], items)
   flattened.map(item => {
     const days = parseFloat(item.days)
-    const parsedFeePerAmount = parseFloat(settings.feeperamount)
-    item.fee = isNaN(days) || isNaN(parsedFeePerAmount) ? 0 : days * parsedFeePerAmount
+    const parsedFeePerAmount = parseFloat(item.feeperamount)
+    if (!item.settings || !item.settings.flatrate) {
+      item.fee = isNaN(days) || isNaN(parsedFeePerAmount) ? 0 : days * parsedFeePerAmount
+    }
     return item
   })
 

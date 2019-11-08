@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
-import { MdDelete } from "react-icons/md"
+import { MdDelete, MdSettings } from "react-icons/md"
 import Button from 'react-bootstrap/Button'
+import Settings from './Settings.jsx'
 
 import {
   updateStateByKey,
@@ -12,43 +14,49 @@ import {
 import Input from './Input.jsx'
 
 const QuoteDetail = (props) => {
-  const initialState = addMissingObjectKeys(props.data, {
+  const { t } = useTranslation()
+
+  const data = addMissingObjectKeys(props.data, {
     title: '',
     detail: '',
-    days: 0,
+    days: '',
+    feeperamount: '',
     fee: 0,
+    settings: {
+      flatrate: false
+    }
   })
-  const [data, setData] = useState(initialState)
   const updateDetail = (key, value) => {
     updateStateByKey(key, value, data, (newData) => {
       props.updateDetail(newData)
-      setData(newData)
     })
   }
 
   return (
     <React.Fragment>
       <div className="table-row quote-item">
-        <div className={props.hasTitle ? 'table-cell title' : 'table-cell title empty'}>
-          {
-            props.hasTitle &&
-            <Input
-              placeholder="Intitulé"
-              savedvalue={props.data.title}
-              required={true}
-              updateField={value => {
-                updateDetail('title', value)
-              }}
-            />
-          }
+        <div className="table-cell-group title">
+          <div className={props.hasTitle ? 'table-cell title' : 'table-cell title empty'}>
+            {
+              props.hasTitle &&
+              <Input
+                placeholder={t('placeholder.title')}
+                savedvalue={data.title}
+                required={true}
+                updateField={value => {
+                  updateDetail('title', value)
+                }}
+              />
+            }
+          </div>
         </div>
-        <div className="table-cell details">
+        <div className="table-cell-group details">
           <div className="table-cell detail">
             <Input
               type='textarea'
-              placeholder="Description"
+              placeholder={t('placeholder.description')}
               required={true}
-              savedvalue={props.data.detail}
+              savedvalue={data.detail}
               updateField={value => {
                 updateDetail('detail', value)
               }}
@@ -58,24 +66,76 @@ const QuoteDetail = (props) => {
             <Input
               type='number'
               min="0"
-              required={true}
-              placeholder="Nb Jours"
-              savedvalue={props.data.days}
+              required={false}
+              placeholder="0"
+              savedvalue={data.days}
               updateField={value => {
-                updateDetail('days', value)
+                const parsed = parseFloat(value)
+                updateDetail('days', isNaN(parsed) ? 0 : parsed)
               }}
             />
           </div>
+          <div className="table-cell feeperamount">
+            {
+              !data.settings.flatrate &&
+                <Input
+                  type='number'
+                  min="0"
+                  required={false}
+                  placeholder="0"
+                  savedvalue={data.feeperamount}
+                  updateField={value => {
+                    const parsed = parseFloat(value)
+                    updateDetail('feeperamount', isNaN(parsed) ? 0 : parsed)
+                  }}
+                />
+            }
+            {
+              data.settings.flatrate &&
+                <div className="field-form field-form--read form-group">
+                  {t('flatrate')}
+                </div>
+            }
+          </div>
           <div className="table-cell fee">
-            {props.data.fee}
+            {
+              data.settings.flatrate &&
+                <Input
+                  type='number'
+                  min={0}
+                  required={false}
+                  placeholder={t('placeholder.amount')}
+                  savedvalue={data.fee}
+                  updateField={value => {
+                    const parsed = parseFloat(value)
+                    updateDetail('fee', isNaN(parsed) ? 0 : parsed)
+                  }}
+                />
+            }
+            {
+              !data.settings.flatrate &&
+              <div>
+                {data.fee}
+              </div>
+            }
           </div>
           <div className="quotedetail-actions">
+            <Settings
+              data={data.settings}
+              variant='outline-primary'
+              size='sm'
+              onSave={value => {
+                updateDetail('settings', value)
+              }}
+            >
+              <MdSettings />
+            </Settings>
             <Button
               variant="outline-danger"
               size="sm"
               className="delete-btn"
               onClick={props.deleteDetail}>
-              <MdDelete /> Supprimer ce détail
+              <MdDelete />
             </Button>
           </div>
         </div>
@@ -89,9 +149,9 @@ QuoteDetail.defaultProps = {
     title: '',
     detail: '',
     days: 0,
+    feeperamount: 0,
     fee: 0,
   },
-  feeperamount: 0,
   hasTitle: false,
   deleteDetail: (e) => {
     console.log({deleteDetail: e})
@@ -106,10 +166,6 @@ QuoteDetail.defaultProps = {
 
 QuoteDetail.propTypes = {
   data: PropTypes.object,
-  feeperamount: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]),
   hasTitle: PropTypes.bool,
   deleteDetail: PropTypes.func,
   addDetail: PropTypes.func,

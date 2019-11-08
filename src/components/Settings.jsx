@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+
+import {
+  LANGUAGES
+} from '../config.js'
 
 import {
   updateStateByKey
@@ -11,12 +16,12 @@ import {
 
 const Settings = (props) => {
   const [show, setShow] = useState(false)
-  const [data, setData] = useState({
-    currency: props.data.currency,
-    feeperamount: props.data.feeperamount,
-    amountLabel: props.data.amountLabel,
-    tax: props.data.tax
-  })
+  const [data, setData] = useState(props.data)
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = lang => {
+    i18n.changeLanguage(lang)
+  }
 
   const handleClose = () => {
     setShow(false)
@@ -33,102 +38,143 @@ const Settings = (props) => {
 
   return (
     <React.Fragment>
-      <Button className="settings-btn" variant="primary" onClick={handleShow}>
+      <Button
+        className="settings-btn"
+        variant={props.variant || 'primary'}
+        onClick={handleShow}
+        size={props.size || 'md'}
+      >
         {props.children}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Paramètres</Modal.Title>
+          <Modal.Title>{t('settings')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group>
-              <Form.Label>Tarif</Form.Label>
-              <Form.Control
-                type="number"
-                min={0}
-                placeholder='ex. 350'
-                value={data.feeperamount}
-                onChange={e => {
-                  handleChange('feeperamount', e.target.value)
-                }}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Monnaie</Form.Label>
-              <Form.Control
-                type="input"
-                placeholder='Euros, $, MAD'
-                value={data.currency}
-                onChange={e => {
-                  handleChange('currency', e.target.value)
-                }}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Intitulé de quantité</Form.Label>
-              <Form.Control
-                type="input"
-                placeholder='Jour, Quantité'
-                value={data.amountLabel}
-                onChange={e => {
-                  handleChange('amountLabel', e.target.value)
-                }}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Taxes (pourcentage)</Form.Label>
-              <Form.Check
-                type='switch'
-                id='tax'
-                label='Activés'
-                checked={data.tax.enabled}
-                onChange={e => {
-                  console.log(e)
-                  console.log(e.target.value)
-                  handleChange('tax', {
-                    ...data.tax,
-                    enabled: !data.tax.enabled
-                  })
-                }}
-              />
-              {
-                data.tax.enabled &&
-                <React.Fragment>
-                  <Form.Control
-                    type="number"
-                    placeholder='Montant en %'
-                    value={data.tax.amount}
-                    onChange={e => {
-                      handleChange('tax', {
-                        ...data.tax,
-                        amount: e.target.value
-                      })
-                    }}
-                  />
-                  <Form.Control
-                    type="input"
-                    placeholder='TVA, charges'
-                    value={data.tax.label}
-                    onChange={e => {
-                      handleChange('tax', {
-                        ...data.tax,
-                        label: e.target.value
-                      })
-                    }}
-                  />
-                </React.Fragment>
-              }
-            </Form.Group>
+            {
+              'language' in data &&
+              <Form.Group>
+                <Form.Label>{t('language')}</Form.Label>
+                <Form.Control
+                  as='select'
+                  value={data.language}
+                  onChange={e => {
+                    handleChange('language', e.target.value)
+                    changeLanguage(e.target.value)
+                  }}
+                >
+                  {
+                    LANGUAGES.map((lang, index) => {
+                      return (
+                      <React.Fragment key={index}>
+                      {lang}
+                      <option
+                        value={lang}>{t('languages.' + lang)}</option>
+                      </React.Fragment>
+                    )})
+                  }
+                </Form.Control>
+              </Form.Group>
+            }
+            {
+              'flatrate' in data &&
+              <Form.Group>
+                <Form.Check
+                  type='switch'
+                  id='tax'
+                  label={`${t('flatrate')} ?`}
+                  checked={data.flatrate}
+                  onChange={() => {
+                    handleChange('flatrate', !data.flatrate)
+                  }}
+                />
+              </Form.Group>
+            }
+            {
+              'currency' in data &&
+              <Form.Group>
+                <Form.Label>{t('currency')}</Form.Label>
+                <Form.Control
+                  type="input"
+                  placeholder={t('placeholder.currency')}
+                  value={data.currency}
+                  onChange={e => {
+                    handleChange('currency', e.target.value)
+                  }}
+                />
+              </Form.Group>
+            }
+            {
+              'amountLabel' in data &&
+              <Form.Group>
+                <Form.Label>{t('amountlabel')}</Form.Label>
+                <Form.Control
+                  as='select'
+                  placeholder={t('placeholder.amountlabel')}
+                  value={data.amountLabel}
+                  onChange={e => {
+                    handleChange('amountLabel', e.target.value)
+                  }}
+                >
+                  <option value="days">{t('days')}</option>
+                  <option value="units">{t('units')}</option>
+                </Form.Control>
+              </Form.Group>
+            }
+            {
+              'tax' in data &&
+              <Form.Group>
+                <Form.Check
+                  type='switch'
+                  id='tax'
+                  label={t('placeholder.tax')}
+                  checked={data.tax.enabled}
+                  onChange={() => {
+                    handleChange('tax', {
+                      ...data.tax,
+                      enabled: !data.tax.enabled
+                    })
+                  }}
+                />
+                {
+                  data.tax.enabled &&
+                  <React.Fragment>
+                    <Form.Control
+                      type="number"
+                      placeholder={t('placeholder.taxamount')}
+                      value={data.tax.amount}
+                      onChange={e => {
+                        handleChange('tax', {
+                          ...data.tax,
+                          amount: e.target.value
+                        })
+                      }}
+                    />
+                    <Form.Control
+                      type="input"
+                      placeholder={t('placeholder.taxlabel')}
+                      value={data.tax.label}
+                      onChange={e => {
+                        handleChange('tax', {
+                          ...data.tax,
+                          label: e.target.value
+                        })
+                      }}
+                    />
+                  </React.Fragment>
+                }
+              </Form.Group>
+            }
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Annuler
+            {t('cancel')}
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            Sauvegarder
+            {t('save')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -138,6 +184,8 @@ const Settings = (props) => {
 
 Settings.defaultProps = {
   data: {},
+  variant: 'primary',
+  size: 'md',
   onSave: (e) => {
     console.log({onSave: e})
   }
@@ -145,6 +193,8 @@ Settings.defaultProps = {
 
 Settings.propTypes = {
   data: PropTypes.object,
+  variant: PropTypes.string,
+  size: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
