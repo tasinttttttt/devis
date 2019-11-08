@@ -209,6 +209,9 @@ function App() {
         </div>
         <div className="credits">
           <a href="https://github.com/tasinttttttt/devis"><DiGithubBadge /> {t('source')}</a>
+          <a href="https://www.buymeacoffee.com/tbayri" target="_blank" rel="noreferrer noopener">
+            <img src="https://cdn.buymeacoffee.com/buttons/arial-yellow.png" alt="Buy Me A Coffee" style={{height: "28.2px", width: "120px", borderRadius: "3px", top: "8px", position: "relative"}} />
+          </a>
           <a href="https://tayebbayri.com"><MdLink /> tbayri</a>
         </div>
       </aside>
