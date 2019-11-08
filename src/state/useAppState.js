@@ -33,7 +33,7 @@ const computeQuote = (items, settings) => {
 
   const tax = parseFloat(settings.tax.amount)
   const totalTax = !settings.tax.enabled ? 0 : isNaN(tax) ? 0 : (totalFee * settings.tax.amount) / 100
-  const totalFeeTaxed = totalFee - totalTax
+  const totalFeeTaxed = totalFee + totalTax
 
   return {
     items: items,
