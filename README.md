@@ -14,5 +14,6 @@ Commandes utiles:
 npm start
 
 # Build dans ./build
+# si déployé dans un sous dossier, veiller à modifier l'entrée "homepage" dans le fichier package.json
 npm build
 ```
