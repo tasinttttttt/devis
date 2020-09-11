@@ -1,5 +1,7 @@
 # Devis
 
+[Version fonctionnelle en ligne ici](https://tayeb.dev/quote)
+
 Création de devis simples, idéal pour indépendant ou tarif journalier.
 
 Inspiré de [easy-devis](https://gitlab.com/Luuse/Luuse.organisation/easy-devis) de Luuse
