@@ -55,6 +55,7 @@ function App() {
       totalFee: 0
     }
   }
+
   const {
     state,
     updateState,
