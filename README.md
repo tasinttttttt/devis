@@ -11,9 +11,10 @@ Commandes utiles:
 ```sh
 # Lancer un serveur de développement
 # localhost:3000
-npm start
+npm run start
 
 # Build dans ./build
 # si déployé dans un sous dossier, veiller à modifier l'entrée "homepage" dans le fichier package.json
-npm build
+npm run build
+PUBLIC_URL={url} npm run build
 ```
