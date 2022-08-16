@@ -1,8 +1,8 @@
 {
-  "name": "easydevis",
+  "name": "devis",
   "version": "0.1.0",
   "private": false,
-  "homepage": "./",
+  "homepage": "https://github.com/tasinttttttt/devis.git",
   "license": "MIT",
   "repository": "https://github.com/tasinttttttt/devis.git",
   "dependencies": {
@@ -16,7 +16,7 @@
     "react-dom": ">=16.13.1",
     "react-i18next": ">=11.7.3",
     "react-icons": ">=3.11.0",
-    "react-scripts": "^5.0.0"
+    "react-scripts": ">=5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +40,6 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "node-sass": ">=7.0.1"
   }
 }
