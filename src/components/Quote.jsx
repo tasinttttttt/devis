@@ -34,7 +34,7 @@ const Quote = (props) => {
       <div className="table">
         <div className="table-header">
           <div className="table-cell-group title">
-            <div className="table-cell">
+            <div className="table-head detail">
               {t('item')}
             </div>
           </div>

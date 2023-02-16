@@ -35,7 +35,7 @@ function App() {
       amountLabel: 'day',
       tax: {
         amount: '',
-        label: 'TVA',
+        label: '',
         enabled: false
       }
     },

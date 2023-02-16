@@ -13,6 +13,7 @@ import {
 import {
   updateStateByKey
 } from '../helpers.js'
+import { FormGroup } from 'react-bootstrap'
 
 const Settings = (props) => {
   const [show, setShow] = useState(false)
@@ -55,7 +56,7 @@ const Settings = (props) => {
           <Form>
             {
               'language' in data &&
-              <Form.Group>
+              <Form.Group className='mb-3'>
                 <Form.Label>{t('language')}</Form.Label>
                 <Form.Control
                   as='select'
@@ -80,7 +81,7 @@ const Settings = (props) => {
             }
             {
               'flatrate' in data &&
-              <Form.Group>
+              <Form.Group className='mb-3'>
                 <Form.Check
                   type='switch'
                   id='tax'
@@ -94,7 +95,7 @@ const Settings = (props) => {
             }
             {
               'currency' in data &&
-              <Form.Group>
+              <Form.Group className='mb-3'>
                 <Form.Label>{t('currency')}</Form.Label>
                 <Form.Control
                   type="input"
@@ -108,7 +109,7 @@ const Settings = (props) => {
             }
             {
               'amountLabel' in data &&
-              <Form.Group>
+              <Form.Group className='mb-3'>
                 <Form.Label>{t('amountlabel')}</Form.Label>
                 <Form.Control
                   as='select'
@@ -125,7 +126,7 @@ const Settings = (props) => {
             }
             {
               'tax' in data &&
-              <Form.Group>
+              <Form.Group className='mb-3'>
                 <Form.Check
                   type='switch'
                   id='tax'
@@ -141,28 +142,31 @@ const Settings = (props) => {
                 {
                   data.tax.enabled &&
                   <React.Fragment>
-                    <Form.Control
-                      type="number"
-                      placeholder={t('placeholder.taxamount')}
-                      value={data.tax.amount}
-                      onChange={e => {
-                        handleChange('tax', {
-                          ...data.tax,
-                          amount: e.target.value
-                        })
-                      }}
-                    />
-                    <Form.Control
-                      type="input"
-                      placeholder={t('placeholder.taxlabel')}
-                      value={data.tax.label}
-                      onChange={e => {
-                        handleChange('tax', {
-                          ...data.tax,
-                          label: e.target.value
-                        })
-                      }}
-                    />
+                    <FormGroup>
+                      <Form.Control
+                       className='mb-1'
+                        type="number"
+                        placeholder={t('placeholder.taxamount')}
+                        value={data.tax.amount}
+                        onChange={e => {
+                          handleChange('tax', {
+                            ...data.tax,
+                            amount: e.target.value
+                          })
+                        }}
+                        />
+                      <Form.Control
+                        type="input"
+                        placeholder={t('placeholder.taxlabel')}
+                        value={data.tax.label}
+                        onChange={e => {
+                          handleChange('tax', {
+                            ...data.tax,
+                            label: e.target.value
+                          })
+                        }}
+                        />
+                    </FormGroup>
                   </React.Fragment>
                 }
               </Form.Group>
