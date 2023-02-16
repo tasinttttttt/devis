@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import ReactDOM from 'react-dom'
+import {createRoot} from 'react-dom/client'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/general.scss'
@@ -10,12 +10,11 @@ import Loader from './components/Loader.jsx'
 
 import * as serviceWorker from './serviceWorker'
 
-ReactDOM.render(
+
+createRoot(document.getElementById('root')).render(
   <Suspense fallback={<Loader />}>
     <App />
   </Suspense>
-  ,
-  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

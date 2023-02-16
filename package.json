@@ -2,21 +2,20 @@
   "name": "devis",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://github.com/tasinttttttt/devis.git",
+  "homepage": "/",
   "license": "MIT",
   "repository": "https://github.com/tasinttttttt/devis.git",
   "dependencies": {
-    "bootstrap": ">=4.5.2",
-    "i18next": ">=19.8.2",
-    "i18next-browser-languagedetector": ">=4.3.1",
-    "i18next-xhr-backend": ">=3.2.2",
-    "local-storage": ">=2.0.0",
-    "react": ">=16.13.1",
-    "react-bootstrap": ">=1.3.0",
-    "react-dom": ">=16.13.1",
-    "react-i18next": ">=11.7.3",
-    "react-icons": ">=3.11.0",
-    "react-scripts": ">=5.0.1"
+    "bootstrap": "^5.2.3",
+    "i18next": "^22.4.9",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
+    "local-storage": "^2.0.0",
+    "react": "^18.0.0",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.0.0",
+    "react-i18next": "^12.1.5",
+    "react-icons": "^4.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": ">=7.0.1"
+    "node-sass": "^7.0.3",
+    "react-scripts": "^5.0.1"
   }
 }
